@@ -13,10 +13,11 @@ class CreateRepliesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('replies');
         Schema::create('replies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('body');
-            $table->integer('question_id')->unsigned();
+            $table->bigInteger('question_id')->unsigned();
             $table->integer('user_id');
             $table->foreign('question_id')->references('id')
                 ->on('questions')
